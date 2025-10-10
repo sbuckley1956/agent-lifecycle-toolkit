@@ -9,7 +9,7 @@ classifiers = [
 ]
 
 dependencies = [
-    "ibm-watsonx-ai>=1.0.0", 
+    "ibm-watsonx-ai>=1.0.0",
     "jinja2>=3.1.6",
     "jsonschema>=4.0.0",
     "langchain-chroma>=0.1.4",
@@ -93,11 +93,11 @@ explicit = true
 
 [tool.ruff.lint]
 select = [
-    "E4", 
-    "E7", 
-    "E9", 
-    "F", 
-    "B"
+    "E4",
+    "E7",
+    "E9",
+    "F", # pyflakes
+    "B", # flake8-bugbear
 ]
 ignore = [
     "B905" # ignore requiring `strict` to be specified when using `zip`
@@ -123,3 +123,13 @@ markers = [
     "llm: marks tests as LLM provider tests (expensive, run only with -m llm)",
     "refract_extra: extra tests from refraction"
 ]
+
+[tool.mypy]
+exclude = [
+    "examples/",
+    "tests/"
+]
+
+[[tool.mypy.overrides]]
+module = ["altk.*"]
+ignore_errors = true

@@ -22,16 +22,18 @@ from altk.toolkit_core.core.toolkit import AgentPhase
 from dotenv import load_dotenv
 
 load_dotenv()
+retries = 0
 
 
 @tool
-def get_weather(city: str, state: Annotated[dict, InjectedState]) -> str:
+def get_weather(city: str, state: Annotated[dict, InjectedState]) -> dict[str, str]:
     """Get weather for a given city."""
-    if random.random() >= 0.500:
-        # Simulates a silent error from an external service
+    global retries
+    if random.random() >= (0.500 + retries * 0.25):
+        # Simulates a silent error from an external service, less likely if retrying
         result = {"weather": "Weather service is under maintenance."}
     else:
-        result = {"weather": f"It's sunny and 70F in {city}!"}
+        result = {"weather": f"It's sunny and {random.randint(50, 90)}F in {city}!"}
 
     # Use SilentReview component to check if it's a silent error
     review_input = SilentReviewRunInput(
@@ -42,8 +44,9 @@ def get_weather(city: str, state: Annotated[dict, InjectedState]) -> str:
 
     if review_result.outcome != Outcome.ACCOMPLISHED:
         # Agent should retry tool call if silent error was detected
-        print("Silent error detected, retry the get_weather tool!")
-        return "Silent error detected, retry the get_weather tool!"
+        print("(ALTK: Silent error detected, retry the get_weather tool!)")
+        retries += 1
+        return {"weather": "!!! Silent error detected, RETRY the get_weather tool !!!"}
     else:
         return result
 
@@ -56,5 +59,6 @@ agent = create_react_agent(
 result = agent.invoke(
     {"messages": [{"role": "user", "content": "what is the weather in sf"}]}
 )
-# Show the final result which should not be that the service is in maintenance.
 print(result["messages"][-1].content)
+if retries > 0:
+    print(f"(get_weather was retried: {retries} times)")

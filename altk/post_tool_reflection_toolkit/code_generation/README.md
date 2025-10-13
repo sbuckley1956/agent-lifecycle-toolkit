@@ -51,7 +51,7 @@ from altk.post_tool_reflection_toolkit.code_generation.code_generation import Co
 
 component = CodeGenerationComponent(
     model_id="meta-llama/llama-3-405b-instruct",
-    provider="watsonx", # can be one of: watsonx, huggingface, openai
+    provider="openai.sync", # can be one of: openai, watsonx, litellm
     model_kwargs={
         "temperature": 0.5,
         "max_tokens": 1000,

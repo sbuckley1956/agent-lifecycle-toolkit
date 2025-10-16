@@ -2,6 +2,9 @@
 
 <!-- version list -->
 
+## v0.2.0 (2025-10-16)
+
+
 ## v0.3.0 (2025-10-16)
 
 - Reconciling package version with existing pypi releases

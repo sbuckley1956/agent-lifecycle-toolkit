@@ -6,7 +6,7 @@ except ImportError as e:
     ) from e
 
 from typing import Any, Optional, Dict, List, Union
-from altk.toolkit_core.llm.base import LLMClient, register_llm
+from altk.toolkit_core.llm.base import BaseLLMClient, LLMClient, register_llm
 from altk.toolkit_core.llm.output_parser import ValidatingLLMClient
 from altk.toolkit_core.llm.types import LLMResponse, GenerationMode, ParameterMapper
 
@@ -51,7 +51,7 @@ class BaseOpenAIClient(LLMClient):
         self._parameter_mapper.set_chat_mapping("timeout", "timeout")
 
         # Custom transform for decoding_method
-        def transform_decoding_method(value, mode):
+        def transform_decoding_method(value: Any, mode: Any) -> dict[str, Any]:
             # OpenAI doesn't have direct decoding_method, map to temperature for approximation
             if value == "greedy":
                 return {"temperature": 0.0}
@@ -61,7 +61,7 @@ class BaseOpenAIClient(LLMClient):
                 return {}  # Unknown method, no transformation
 
         # Custom transform for min_tokens (not supported by OpenAI)
-        def transform_min_tokens(value, mode):
+        def transform_min_tokens(value: Any, mode: Any) -> dict[str, Any]:
             # OpenAI doesn't support min_tokens, so we ignore it and emit a warning
             import warnings
 
@@ -120,7 +120,7 @@ class BaseValidatingOpenAIClient(ValidatingLLMClient):
         self._parameter_mapper.set_chat_mapping("timeout", "timeout")
 
         # Custom transform for decoding_method
-        def transform_decoding_method(value, mode):
+        def transform_decoding_method(value: Any, mode: Any) -> dict[str, Any]:
             # OpenAI doesn't have direct decoding_method, map to temperature for approximation
             if value == "greedy":
                 return {"temperature": 0.0}
@@ -130,7 +130,7 @@ class BaseValidatingOpenAIClient(ValidatingLLMClient):
                 return {}  # Unknown method, no transformation
 
         # Custom transform for min_tokens (not supported by OpenAI)
-        def transform_min_tokens(value, mode):
+        def transform_min_tokens(value: Any, mode: Any) -> dict[str, Any]:
             # OpenAI doesn't support min_tokens, so we ignore it and emit a warning
             import warnings
 
@@ -148,7 +148,7 @@ class BaseValidatingOpenAIClient(ValidatingLLMClient):
 
 
 @register_llm("openai.sync")
-class SyncOpenAIClient(BaseOpenAIClient, LLMClient):
+class SyncOpenAIClient(BaseOpenAIClient, BaseLLMClient):
     """
     Adapter for openai.OpenAI.
 
@@ -182,12 +182,12 @@ class SyncOpenAIClient(BaseOpenAIClient, LLMClient):
         """Parse response, handling both content and tool calls"""
         return _parse_llm_response(raw)
 
-    def generate(
+    def generate(  # type: ignore
         self,
         prompt: Union[str, List[Dict[str, Any]]],
         mode: Union[str, GenerationMode] = GenerationMode.CHAT,
         **kwargs: Any,
-    ) -> str:
+    ) -> Union[str, LLMResponse]:
         """
         Generate with proper prompt format validation based on mode.
 
@@ -251,7 +251,7 @@ class AsyncOpenAIClient(BaseOpenAIClient, LLMClient):
         prompt: Union[str, List[Dict[str, Any]]],
         mode: Union[str, GenerationMode] = GenerationMode.CHAT_ASYNC,
         **kwargs: Any,
-    ) -> str:
+    ) -> Union[str, LLMResponse]:
         """
         Generate async with proper prompt format validation based on mode.
 
@@ -303,14 +303,14 @@ class SyncOpenAIClientOutputVal(BaseOpenAIClient, ValidatingLLMClient):
             GenerationMode.CHAT.value, "chat.completions.parse", "messages"
         )
 
-    def generate(
+    def generate(  # type: ignore
         self,
         prompt: Union[str, List[Dict[str, str]]],
         schema: Optional[Any] = None,
         schema_field: Optional[str] = "response_format",
         retries: int = 3,
         **kwargs: Any,
-    ) -> Any:
+    ) -> Union[str, LLMResponse]:
         """Generate with OpenAI structured output support"""
         # Convert string prompts to message format for chat
         if isinstance(prompt, str):
@@ -514,7 +514,7 @@ class SyncAzureOpenAIClientOutputVal(BaseValidatingOpenAIClient):
             # Fall back to our validation logic
             return super().generate(
                 prompt=prompt,
-                schema=schema,
+                schema=schema,  # type: ignore
                 schema_field=None,  # Don't use Azure OpenAI's structured output
                 retries=retries,
                 **kwargs,
@@ -574,7 +574,7 @@ class AsyncAzureOpenAIClientOutputVal(BaseValidatingOpenAIClient):
             # Fall back to our validation logic
             return await super().generate_async(
                 prompt=prompt,
-                schema=schema,
+                schema=schema,  # type: ignore
                 schema_field=None,  # Don't use Azure OpenAI's structured output
                 retries=retries,
                 **kwargs,

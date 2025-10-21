@@ -2,6 +2,15 @@
 
 <!-- version list -->
 
+## v0.4.0 (2025-10-21)
+
+### Documentation
+
+- Repo-wide documentation and examples update
+  ([#20](https://github.com/AgentToolkit/agent-lifecycle-toolkit/pull/20),
+  [`28597d1`](https://github.com/AgentToolkit/agent-lifecycle-toolkit/commit/28597d1bcc0e2ed624da08fa153fefdc66239e39))
+
+
 ## v0.3.0 (2025-10-16)
 
 - No changes. Reconciling package version with existing pypi releases

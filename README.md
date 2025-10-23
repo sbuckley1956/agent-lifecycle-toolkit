@@ -118,7 +118,7 @@ To further accelerate your AI application development, check out ALTK's native
 
 ## Resources
 
-## Get Help and Support
+### Get Help and Support
 Please feel free to connect with us in the [discussion section](https://github.com/AgentToolkit/agent-lifecycle-toolkit).
 
 ---

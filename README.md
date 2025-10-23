@@ -25,7 +25,9 @@ The Agent Lifecycle Toolkit helps agent builders create better performing agents
 | Post-tool       | [RAG Repair](altk/post_tool/rag_repair)             | *Is your agent not able to recover from tool call failures?* Repair failed tool calls using domain-specific documents via Retrieval-Augmented Generation. |
 | Pre-response    | [Policy Guard](altk/pre_response/policy_guard)                              | *Does your agent return responses that violate policies or instructions?* Ensure agent outputs comply with defined policies and repair them if needed. |
 
-## Installation and Getting Started
+---
+
+## Getting Started
 
 ### Installation
 
@@ -38,8 +40,8 @@ pip install agent-lifecycle-toolkit
 More [detailed installation instructions]() are available in the docs.
 <!-- [TODO: add link] -->
 
-### Getting Started
-Below is an end-to-end example that you can quickly get your hands dirty with. The example has a langgraph agent, a weather tool, and a component that checks for silent errors. Refer to the [examples](examples) folder for this example and others. The below example will additionally require the `langgraph` and `langchain-anthropic` packages along with setting two environment variables.
+### Quick Start
+Below is an end-to-end example that will halp you get started using ALT. The example has a langgraph agent, a weather tool, and a component that checks for silent errors. Refer to the [examples](examples) folder for this example and others. The below example will additionally require the `langgraph` and `langchain-anthropic` packages along with setting two environment variables.
 
 ```python
 import random
@@ -94,37 +96,41 @@ print(result["messages"][-1].content)
 <!-- More advanced usage options are available in the [docs](). -->
 <!-- [TODO: add link] -->
 
-## Documentation
+---
+
+## Usage
+
+### Documentation
 
 Check out ALTK's [documentation](https://pages.github.com/AgentToolkit/agent-lifecycle-toolkit/), for details on
 installation, usage, concepts, and more.
 
 The ALTK supports multiple LLM providers and two methods of configuring the providers. For more information, see the [LLMClient documentation](https://github.com/AgentToolkit/agent-lifecycle-toolkit/blob/main/altk/toolkit_core/llm/README.md).
 
-## Examples
+### Examples
 Go hands-on with our [examples](examples).
 
-## Integrations
+### Integrations
 To further accelerate your AI application development, check out ALTK's native
 [integrations](./docs/integrations.md) with popular frameworks and tools.
+
+---
+
+## Resources
 
 ## Get Help and Support
 Please feel free to connect with us using the [discussion section](https://github.com/AgentToolkit/agent-lifecycle-toolkit).
 
-## Contributing Guidelines
+---
+
+## Contributing
 ALTK is open-source and we ❤️ contributions.<br>
 
-To help build ALTK, take a look at our: [Contribution guidelines](CONTRIBUTING.md)
+To help build ALTK, take a look at our [Contribution guidelines](CONTRIBUTING.md)
 
-## Bugs
 We use GitHub Issues to manage bugs. Before filing a new issue, please check to make sure it hasn't already been logged.
 
-## Code of Conduct
-This project and everyone participating in it are governed by the [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please read the [full text](CODE_OF_CONDUCT.md) so that you know which actions may or may not be tolerated.
+---
 
-## License
-The ALTK codebase is under Apache 2.0 license.
-For individual model usage, please refer to the model licenses in the original packages.
-
-## Contributors
+## Acknowledgments
 Thanks to all of our contributors who make this project possible. Special thanks to the Global Agentic Middleware team in IBM Research for all the contributions from the many different teams and people.

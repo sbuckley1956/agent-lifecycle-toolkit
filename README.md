@@ -9,8 +9,26 @@ The Agent Lifecycle Toolkit helps agent builders create better performing agents
 
 ![lifecycle.png](docs/assets/lifecycle.png)
 
+---
 
-## Installation
+## Features
+<!--
+[TODO: move up in the order of sections?] -->
+
+| Lifecycle Stage | Component                                                              | Purpose |
+|-----------------|------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Pre-LLM         | [Spotlight](altk/pre_llm/spotlight)                                    | *Does your agent not follow instructions?* Emphasize important spans in prompts to steer LLM attention. |
+| Pre-tool        | [Refraction](altk/pre_tool/refraction)              | *Does your agent generate inconsistent tool sequences?* Validate and repair tool call syntax to prevent execution failures. |
+| Pre-tool        | [SPARC](altk/pre_tool/sparc)                        | *Is your agent calling tools with hallucinated arguments?* Make sure arguments match the tool specs and request semantics. |
+| Post-tool       | [JSON Processor](altk/post_tool/code_generation)                                                       | *Is your agent overwhelmed with large JSON payloads in its context?* Generate code on the fly to extract relevant data in JSON tool responses. |
+| Post-tool       | [Silent Error Review](altk/post_tool/silent_review) | *Is your agent ignoring subtle semantic tool errors?* Detect silent errors in tool responses and assess relevance, accuracy, and completeness. |
+| Post-tool       | [RAG Repair](altk/post_tool/rag_repair)             | *Is your agent not able to recover from tool call failures?* Repair failed tool calls using domain-specific documents via Retrieval-Augmented Generation. |
+| Pre-response    | [Policy Guard](altk/pre_response/policy_guard)                              | *Does your agent return responses that violate policies or instructions?* Ensure agent outputs comply with defined policies and repair them if needed. |
+
+## Installation and Getting Started
+
+### Installation
+
 To use ALTK, simply install agent-lifecycle-toolkit from your package manager, e.g. pip:
 
 ```bash
@@ -20,7 +38,7 @@ pip install agent-lifecycle-toolkit
 More [detailed installation instructions]() are available in the docs.
 <!-- [TODO: add link] -->
 
-## Getting Started
+### Getting Started
 Below is an end-to-end example that you can quickly get your hands dirty with. The example has a langgraph agent, a weather tool, and a component that checks for silent errors. Refer to the [examples](examples) folder for this example and others. The below example will additionally require the `langgraph` and `langchain-anthropic` packages along with setting two environment variables.
 
 ```python
@@ -75,21 +93,6 @@ print(result["messages"][-1].content)
 
 <!-- More advanced usage options are available in the [docs](). -->
 <!-- [TODO: add link] -->
-
-## Features
-<!--
-[TODO: move up in the order of sections?] -->
-
-| Lifecycle Stage | Component                                                              | Purpose |
-|-----------------|------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Pre-LLM         | [Spotlight](altk/pre_llm/spotlight)                                    | *Does your agent not follow instructions?* Emphasize important spans in prompts to steer LLM attention. |
-| Pre-tool        | [Refraction](altk/pre_tool/refraction)              | *Does your agent generate inconsistent tool sequences?* Validate and repair tool call syntax to prevent execution failures. |
-| Pre-tool        | [SPARC](altk/pre_tool/sparc)                        | *Is your agent calling tools with hallucinated arguments?* Make sure arguments match the tool specs and request semantics. |
-| Post-tool       | [JSON Processor](altk/post_tool/code_generation)                                                       | *Is your agent overwhelmed with large JSON payloads in its context?* Generate code on the fly to extract relevant data in JSON tool responses. |
-| Post-tool       | [Silent Error Review](altk/post_tool/silent_review) | *Is your agent ignoring subtle semantic tool errors?* Detect silent errors in tool responses and assess relevance, accuracy, and completeness. |
-| Post-tool       | [RAG Repair](altk/post_tool/rag_repair)             | *Is your agent not able to recover from tool call failures?* Repair failed tool calls using domain-specific documents via Retrieval-Augmented Generation. |
-| Pre-response    | [Policy Guard](altk/pre_response/policy_guard)                              | *Does your agent return responses that violate policies or instructions?* Ensure agent outputs comply with defined policies and repair them if needed. |
-
 
 ## Documentation
 

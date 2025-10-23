@@ -126,7 +126,7 @@ Please feel free to connect with us in the [discussion section](https://github.c
 ## Contributing
 ALTK is open-source and we ❤️ contributions.
 
-To help build ALTK, take a look at our [Contribution guidelines](CONTRIBUTING.md).
+To help build ALTK, take a look at our [contribution guidelines](CONTRIBUTING.md).
 
 We use GitHub Issues to manage bugs. Before filing a new issue, please check to make sure it hasn't already been logged.
 

@@ -102,10 +102,10 @@ print(result["messages"][-1].content)
 
 ### Documentation
 
-Check out ALTK's [documentation](https://pages.github.com/AgentToolkit/agent-lifecycle-toolkit/), for details on
+Check out ALTK's [documentation](https://pages.github.com/AgentToolkit/agent-lifecycle-toolkit/) for details on
 installation, usage, concepts, and more.
 
-The ALTK supports multiple LLM providers and two methods of configuring the providers. For more information, see the [LLMClient documentation](https://github.com/AgentToolkit/agent-lifecycle-toolkit/blob/main/altk/toolkit_core/llm/README.md).
+ALTK supports multiple LLM providers and two methods of configuring the providers. For more information see the [LLMClient documentation](https://github.com/AgentToolkit/agent-lifecycle-toolkit/blob/main/altk/toolkit_core/llm/README.md).
 
 ### Examples
 Go hands-on with our [examples](examples).
@@ -119,14 +119,14 @@ To further accelerate your AI application development, check out ALTK's native
 ## Resources
 
 ## Get Help and Support
-Please feel free to connect with us using the [discussion section](https://github.com/AgentToolkit/agent-lifecycle-toolkit).
+Please feel free to connect with us in the [discussion section](https://github.com/AgentToolkit/agent-lifecycle-toolkit).
 
 ---
 
 ## Contributing
-ALTK is open-source and we ❤️ contributions.<br>
+ALTK is open-source and we ❤️ contributions.
 
-To help build ALTK, take a look at our [Contribution guidelines](CONTRIBUTING.md)
+To help build ALTK, take a look at our [Contribution guidelines](CONTRIBUTING.md).
 
 We use GitHub Issues to manage bugs. Before filing a new issue, please check to make sure it hasn't already been logged.
 

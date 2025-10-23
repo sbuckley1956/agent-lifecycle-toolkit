@@ -41,7 +41,7 @@ More [detailed installation instructions]() are available in the docs.
 <!-- [TODO: add link] -->
 
 ### Quick Start
-Below is an end-to-end example that will halp you get started using ALT. The example has a langgraph agent, a weather tool, and a component that checks for silent errors. Refer to the [examples](examples) folder for this example and others. The below example will additionally require the `langgraph` and `langchain-anthropic` packages along with setting two environment variables.
+Below is an end-to-end example that will help you get started using ALT. The example has a langgraph agent, a weather tool, and a component that checks for silent errors. Refer to the [examples](examples) folder for this example and others. The below example will additionally require the `langgraph` and `langchain-anthropic` packages along with setting two environment variables.
 
 ```python
 import random
